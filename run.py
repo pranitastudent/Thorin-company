@@ -22,22 +22,21 @@ def about():
 @app.route('/about/<member_name>')
 def about_member(member_name):
     member = {}
-   
+    
     with open("data/company.json", "r") as json_data:
         data = json.load(json_data)
         for obj in data:
             if obj["url"] == member_name:
                 member = obj
-   
+    
     return render_template("member.html", member=member)
 
 
 @app.route('/contact', methods=["GET", "POST"])
 def contact():
     if request.method == "POST":
-        flash("Thanks {}, we have received your message".format(
-            request.form["name"]
-        ))
+        flash("Thanks {}, we have received your your message!". format(request.form["name"]))
+        
     return render_template("contact.html", page_title="Contact")
 
 
